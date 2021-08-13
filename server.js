@@ -1,6 +1,7 @@
 let express = require('express');
 let path = require('path');
 let serveStatic = require('serve-static');
+require('dotenv').config();
 
 let app = express();
 app.use(serveStatic(path.join(__dirname, 'dist')));
