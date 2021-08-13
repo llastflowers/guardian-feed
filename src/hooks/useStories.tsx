@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { getAllStories, getStories } from '../services/newsAPI';
+import { getStories, getAllStories } from '../services/newsAPI';
 
-const useStories = (query: string) => {
+export const useStories = (query: string) => {
   const [stories, setStories] = useState({response: { results: []}});
 
 useEffect(() => {
-  if(query !== '') {
+  if(query) {
     getStories(query)
-      .then((searchResults: any) => setStories(searchResults));
+    .then((searchResults: any) => setStories(searchResults));
+  } else {
+    getAllStories(query)
+    .then((searchResults: any) => setStories(searchResults));
   }
 }, [query]);
 return stories;
 };
-
-export default useStories;
