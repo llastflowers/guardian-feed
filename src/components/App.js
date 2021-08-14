@@ -10,10 +10,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var react_router_dom_1 = require("react-router-dom");
 var Homepage_1 = __importDefault(require("./Homepage"));
+// import Pagination from './Pagination';
 var styled_1 = __importDefault(require("@emotion/styled"));
-var MainWrapper = styled_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n\n@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');\n \nheader {\n  background-color: rgba(32,85,132,255);\n  margin: 0;\n  height: 10vh;\n  text-align: center;\n  font-family: 'Arvo', serif;\n  font-size: 2em;\n  color: white;\n  }\n"], ["\n\n@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');\n \nheader {\n  background-color: rgba(32,85,132,255);\n  margin: 0;\n  height: 10vh;\n  text-align: center;\n  font-family: 'Arvo', serif;\n  font-size: 2em;\n  color: white;\n  }\n"])));
+"@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');";
+var MainWrapper = styled_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\nheader {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: rgba(32,85,132,255);\n  border-radius: 5px;\n  margin: 0;\n  height: 15vh;\n  font-family: 'Arvo', serif;\n  font-size: 2em;\n  color: white;\n  }\nspan {\n  color: rgba(255,229,0,255);\n}\n"], ["\nheader {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: rgba(32,85,132,255);\n  border-radius: 5px;\n  margin: 0;\n  height: 15vh;\n  font-family: 'Arvo', serif;\n  font-size: 2em;\n  color: white;\n  }\nspan {\n  color: rgba(255,229,0,255);\n}\n"])));
 var Header = function () { return (react_1.default.createElement("header", null,
-    react_1.default.createElement("h1", null, "Guardian Feed"))); };
+    react_1.default.createElement("h1", null,
+        "Guardian ",
+        react_1.default.createElement("span", null, "Search"),
+        "."))); };
 function App() {
     return (react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
         react_1.default.createElement(MainWrapper, null,

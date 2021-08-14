@@ -6,14 +6,14 @@ import styled from '@emotion/styled'
 const SearchForm = styled.form`
   display: flex;
   justify-content: center;
-  margin: 10vh auto;
+  margin: 50px auto;
 
   input {
     width: 300px;
     height: 35px;
     font-size: 16px;
     letter-spacing: 0.5px;
-    padding-left: 7px;
+    padding-left: 10px;
     border-radius: 5px;
     border: 0.9px solid black;
     outline: none;
@@ -47,10 +47,48 @@ const SearchForm = styled.form`
 }
 `
 
+const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+
+`
+
+const StoriesList = styled.div`
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+li {
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+  list-style-type: none;
+}
+
+img {
+  width: 400px;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  line-height: 22px;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 75%;
+  }
+}
+`
 const Homepage = () => {
   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const storiesList = useStories(query);
+  // const pagesInfo = useStories(query);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -60,27 +98,36 @@ const Homepage = () => {
   const searchResults = storiesList.response.results.map(story =>
     <li key={story.id}>
       <div>
-        <Link to={{ pathname: `https://www.theguardian.com/${story.id}`}} target="_blank" >
-          <img src={story.fields.thumbnail} />
+        <Link to={{ pathname: `https://www.theguardian.com/${story.id}`}} target='_blank' >
+          <img src={story.fields.thumbnail}/>
           <p>{story.webTitle}</p>
-          <p>{story.webPublicationDate}</p>
+          <p>{story.webPublicationDate.slice(0, 10)}</p>
           <p>{story.fields.trailText}</p>
         </Link>
-      </div>
-    </li> 
+      </div> 
+    </li>
   );
 
   return (
     <>
     <SearchForm>
       <form onSubmit={handleSubmit}>
-        <input type='text' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
+        <input placeholder='What are you looking for?' type='text' value={searchTerm} onChange={({ target }) => setSearchTerm(target.value)} />
         <button>Search</button>
       </form>
     </SearchForm>
-        <ul>
-          {searchResults}
-        </ul>
+    <StoriesList>
+      <ul>
+        {searchResults}
+      </ul>
+    </StoriesList>
+    <div>
+      <Pagination>
+        <button>PREV</button>
+        <p>(PAGE 1)</p>
+        <button>NEXT</button>
+      </Pagination>
+    </div>
     </>
   );
 };
